@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let userChoice = '';
+        let computerChoice = '';
+        let yourScore = 0;
+        let computerScore = 0;
+
+        //Verify user Choice 
+        function getUserChoice() {
+            userChoice = prompt('Choose Rock, Paper, or Scissors!');
+            userChoice = userChoice.toLowerCase();
+            if (userChoice == 'scissors' || userChoice == 'rock' || userChoice == 'paper') {
+                return userChoice
+            } else {
+                console.log('You must enter Rock, Paper or Scissors!')
+                getUserChoice();
+            }
+        } 
+
+        // Computer randomly selects Rock, Paper / Scissors
+        function computerPlay() {
+            let r = Math.random() * 3;
+            let choice;
+
+            if(r > 2) {
+                console.log('Computer chose Rock');
+                return 'rock';
+            } else if (r > 1) {
+                console.log('Computer chose Scissors');
+                return 'scissors';
+            } else {
+                console.log('Computer chose Paper');
+                return 'paper';
+            }
+        }
+
+
+        //compare results
+        function compareChoice(userChoice, computerChoice) {
+            if (userChoice === computerChoice) {
+            console.log('Draw')
+            } else if(userChoice === 'paper') {
+                if(computerChoice == 'scissors') {
+                    console.log ('You lose, try again!')
+                    return computerScore += 1
+                } else {
+                    console.log('You win!')
+                    return yourScore += 1
+                }
+            } else if(userChoice === 'rock') {
+                if(computerChoice === 'paper') {
+                    console.log('You lose! Try again!')
+                    return computerScore += 1
+                } else {
+                    console.log('You win!')
+                    return yourScore += 1
+                }
+            } else if(userChoice === 'scissors') {
+                if (computerChoice === 'rock') {
+                    console.log('You Lose! Try again!')
+                    return computerScore += 1
+                } else {
+                    console.log('You win!')
+                    return yourScore += 1
+                }
+            }
+
+        }
+
+       
+
+      
+
+        
+
+        function game() {
+           
+            getUserChoice();
+            console.log('Your choice was ' + userChoice);
+            computerChoice = computerPlay();
+            compareChoice(userChoice, computerChoice);
+            console.log('Your Score: ' + yourScore + ' Computer Score: ' + computerScore);
+
+            if(computerScore == 3) {
+                console.log('Game over! Computer Wins!');
+                yourScore = 0;
+                computerScore = 0;
+            } else if (yourScore == 3) {
+                console.log('Game over! You win!');
+                yourScore = 0;
+                computerScore = 0;
+            }
+        }
+
+
+     
+
+
+    </script>
+</body>
+</html>
